@@ -1,6 +1,11 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 html,
 body {
-  padding: 0;
+  /*background-image: url("https://images.squarespace-cdn.com/content/v1/5796217a37c58136e65e3fc8/1605881969654-XTLCGGQKWLR1WRHLZP8K/ke17ZwdGBToddI8pDm48kJl-TYcXfeEZrDzO5yzJkrl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0luUmcNM2NMBIHLdYyXL-JyTM9mXklQ7q-acNlUulzgDYBNH2n9neF-dffCi8VRODg/FourPoint-IMCPL-Wayne-8558-HDR-Edit-Edit.jpg?format=1500w");
+  */padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
