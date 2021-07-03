@@ -1,20 +1,71 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
+import { useLibrary } from "../libs/use-libraries";
+import { v4 as uuidv4 } from "uuid";
+import Link from "next/link";
+import Layout from "../Components/Layout/Layout";
 
-const App = () => {
+const Libraries = () => {
+  const { libraries, createLibrary } = useLibrary();
+  const [name, setName] = useState("");
   const router = useRouter();
 
+  console.log("my libararies: ", libraries);
+
+  const handleCreateLibrary = () => {
+    console.log("name: ", name);
+    createLibrary({
+      id: uuidv4(),
+      name,
+      sections: [
+        { name: "Fiction", books: [] },
+        { name: "Non-Fiction", books: [] },
+        { name: "Magazines", books: [] },
+      ],
+    });
+    setName("");
+  };
+
   return (
-    <div className="mt-16 flex flex-col p-6 items-center">
-      <div className="w-3/5 bg-white bg-opacity-30 shadow-md border my-2 p-6 flex justify-center">
-        <button
-          className="bg-blue-600 font-medium text-white hover:bg-blue-700 px-4 py-2 rounded-md"
-          onClick={() => router.push("/libraries")}
-        >
-          Goo
-        </button>
+    <Layout>
+      <div className="flex justify-center items-center py-8">
+        <div className="w-full">
+          <div className="flex justify-between items-center">
+            <div className="font-bold">Libraries</div>
+          </div>
+          {(libraries || []).map((library, idx) => {
+            const { name, id } = library;
+            return (
+              <div key={idx} className="py-2">
+                <button onClick={() => router.push(`/library/${id}`)}>
+                  {name}={id}
+                </button>
+              </div>
+            );
+          })}
+          <div className="pt-24">
+            <div className="w-full p-2 flex">
+              <input
+                className="w-full p-3 border border-gray-300 hover:border-gray-400"
+                type="text"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+              <button
+                type="button"
+                className="ml-auto p-2 text-white bg-blue-600 hover:bg-blue-700"
+                onClick={() => handleCreateLibrary()}
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
-export default App;
+export default Libraries;
