@@ -3,6 +3,8 @@ import { useLibrary } from "../../libs/use-libraries";
 import { useRouter } from "next/router";
 import EditModal from "../../Components/EditModal/EditModal";
 import { GoTrashcan } from "react-icons/go";
+import Layout from "../../Components/Layout/Layout";
+
 const Sections = () => {
   const { libraries, addBookToLibrary, removeBookFromLibrary } = useLibrary();
   const [showEditingModal, toggleEditingModal] = useState(false);
@@ -21,70 +23,83 @@ const Sections = () => {
   const handleCancel = () => toggleEditingModal(false);
 
   return (
-    <div className="flex flex-col items-center mt-16">
-      <div className="w-3/5">
-        <div className="flex justify-center p-6 bg-gray-400">
-          Library - {id}
+    <Layout>
+      <div>
+        <div className="flex items-center justify-center gap-2 p-2">
+          <div>Library {id}</div>
+          <button
+            className="bg-blue-500 text-white p-2 ml-auto"
+            onClick={() => {
+              toggleEditingModal(true);
+            }}
+          >
+            Add Book
+          </button>
+
+          <button
+            className="bg-blue-500 text-white p-2"
+            onClick={() => router.push("/")}
+          >
+            Back
+          </button>
         </div>
         <div className="flex flex-col gap-10">
           {library?.sections.map((section, idx) => {
             return (
               <div key={idx}>
-                <div className="font-bold p-4 bg-gray-200">{section.name}</div>
-                <div className="grid grid-cols-6 text-xs gap-8 py-8">
+                <div className="flex justify-center font-bold p-2">
+                  {section.name}
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center">
                   {section.books.map((book, idx) => (
-                    <div key={idx} className="flex flex-col gap-2">
-                      <img src={book.view} />
-                      <div>
-                        <div className="font-bold">{book.title}</div>
-                        <div className="flex items-center justify-between">
-                          {book.author}
-
-                          <GoTrashcan
-                            className="text-red-500 cursor-pointer"
-                            onClick={() =>
-                              removeBookFromLibrary({
-                                libraryId: id,
-                                bookSection: section.name,
-                                bookTitle: book.title,
-                              })
-                            }
-                          />
-                        </div>
-                      </div>
-                    </div>
+                    <Book
+                      key={idx}
+                      book={book}
+                      removeBookFromLibrary={removeBookFromLibrary}
+                      sectionName={section.name}
+                      libraryId={id}
+                    />
                   ))}
                 </div>
               </div>
             );
           })}
         </div>
-        <div className="flex justify-between">
-          <div>
-            {showEditingModal && (
-              <EditModal
-                sections={sections}
-                addBookToLibrary={addBookToLibrary}
-                handleCancel={handleCancel}
-              />
-            )}
-            <button
-              className="ml-auto rounded-md px-4 py-2 bg-blue-600 font-medium text-white hover:bg-blue-700"
-              onClick={() => {
-                toggleEditingModal(true);
-              }}
-            >
-              Add Book
-            </button>
-          </div>
-          <button
-            className="rounded-md px-4 py-2 bg-blue-600 font-medium text-white hover:bg-blue-700"
-            onClick={() => router.push("/libraries")}
-          >
-            come back
-          </button>
+        <div>
+          {showEditingModal && (
+            <EditModal
+              sections={sections}
+              addBookToLibrary={addBookToLibrary}
+              handleCancel={handleCancel}
+            />
+          )}
         </div>
       </div>
+    </Layout>
+  );
+};
+
+const Book = ({
+  book: { title, author, view },
+  removeBookFromLibrary,
+  sectionName,
+  libraryId,
+}) => {
+  return (
+    <div className="flex flex-col justify-end gap-1 text-sm p-8 w-64 mx-auto">
+      <img src={view} className="h-64" />
+      <div className="font-bold">{title}</div>
+      <div>{author}</div>
+      <GoTrashcan
+        className="text-red-500 cursor-pointer"
+        onClick={() =>
+          removeBookFromLibrary({
+            libraryId,
+            bookSection: sectionName,
+            bookTitle: title,
+          })
+        }
+      />
     </div>
   );
 };
