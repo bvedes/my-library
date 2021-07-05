@@ -23,7 +23,7 @@ const Sections = () => {
     <Layout>
       <div>
         <div className="flex items-center justify-center gap-2 p-2">
-          <div>Library {id}</div>
+          <div>Library</div>
           <button
             className="bg-blue-500 text-white p-2 ml-auto"
             onClick={() => {
