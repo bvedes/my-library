@@ -14,10 +14,7 @@ const Sections = () => {
     query: { id },
   } = useRouter();
 
-  console.log("libraries: ", libraries);
-
   const library = libraries?.find((library) => library.id === id);
-  console.log("library: ", library);
   const sections = library?.sections.map((section) => section.name);
 
   const handleCancel = () => toggleEditingModal(false);

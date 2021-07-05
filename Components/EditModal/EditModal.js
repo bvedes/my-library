@@ -5,7 +5,6 @@ const EditModal = ({ sections, addBookToLibrary, handleCancel }) => {
   const [author, setAuthor] = useState("");
   const [view, setView] = useState("");
   const [section, setSection] = useState("Fiction");
-  console.log("Sections: ", sections);
 
   return (
     <div

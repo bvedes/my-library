@@ -10,10 +10,7 @@ const Libraries = () => {
   const [name, setName] = useState("");
   const router = useRouter();
 
-  console.log("my libararies: ", libraries);
-
   const handleCreateLibrary = () => {
-    console.log("name: ", name);
     createLibrary({
       id: uuidv4(),
       name,
@@ -37,8 +34,11 @@ const Libraries = () => {
             const { name, id } = library;
             return (
               <div key={idx} className="py-2">
-                <button onClick={() => router.push(`/library/${id}`)}>
-                  {name}={id}
+                <button
+                  className="underline hover:no-underline text-blue-600 hover:text-blue-800"
+                  onClick={() => router.push(`/library/${id}`)}
+                >
+                  {name}
                 </button>
               </div>
             );

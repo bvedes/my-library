@@ -9,7 +9,6 @@ export const useLibrary = () => {
   } = useRouter();
 
   useEffect(() => {
-    console.log("2");
     setLibraries(
       JSON.parse(window.localStorage.getItem("libraries")) || initialState
     );
