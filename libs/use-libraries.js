@@ -3,7 +3,7 @@ import { initialState } from "../utils/index";
 import { useRouter } from "next/router";
 
 export const useLibrary = () => {
-  const [libraries, setLibraries] = useState(null);
+  const [libraries, setLibraries] = useState([]);
   const {
     query: { id },
   } = useRouter();
@@ -71,8 +71,13 @@ export const useLibrary = () => {
     );
   };
 
+  const removeLibrary = (id) => {
+    handleSetLibraries(libraries.filter((library) => library.id !== id));
+  };
+
   return {
     libraries,
+    removeLibrary,
     createLibrary,
     addBookToLibrary,
     removeBookFromLibrary,
