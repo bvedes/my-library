@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import EditModal from "../../Components/EditModal/EditModal";
 import { GoTrashcan } from "react-icons/go";
 import Layout from "../../Components/Layout/Layout";
+import { Button } from "@chakra-ui/react";
 
 const Sections = () => {
   const { libraries, addBookToLibrary, removeBookFromLibrary } = useLibrary();
@@ -24,21 +25,25 @@ const Sections = () => {
       <div>
         <div className="flex items-center justify-center gap-2 p-2">
           <div>Library</div>
-          <button
+          <Button
+            colorScheme="blue"
+            size="lg"
             className="bg-blue-500 text-white p-2 ml-auto"
             onClick={() => {
               toggleEditingModal(true);
             }}
           >
             Add Book
-          </button>
+          </Button>
 
-          <button
+          <Button
+            colorScheme="blue"
+            size="lg"
             className="bg-blue-500 text-white p-2"
             onClick={() => router.push("/")}
           >
             Back
-          </button>
+          </Button>
         </div>
         <div className="flex flex-col gap-10">
           {library?.sections.map((section, idx) => {
@@ -86,17 +91,19 @@ const Book = ({
     <div className="flex flex-col justify-end gap-1 text-sm p-8 w-64 mx-auto">
       <img src={view} className="h-64" />
       <div className="font-bold">{title}</div>
-      <div>{author}</div>
-      <GoTrashcan
-        className="text-red-500 cursor-pointer"
-        onClick={() =>
-          removeBookFromLibrary({
-            libraryId,
-            bookSection: sectionName,
-            bookTitle: title,
-          })
-        }
-      />
+      <div className="flex items-center">
+        {author}
+        <GoTrashcan
+          className="text-red-500 cursor-pointer ml-2"
+          onClick={() =>
+            removeBookFromLibrary({
+              libraryId,
+              bookSection: sectionName,
+              bookTitle: title,
+            })
+          }
+        />
+      </div>
     </div>
   );
 };

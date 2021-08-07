@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import { useLibrary } from "../libs/use-libraries";
 import { v4 as uuidv4 } from "uuid";
 import Layout from "../Components/Layout/Layout";
+import { Button } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
 
 const Libraries = () => {
   const { libraries, createLibrary, removeLibrary } = useLibrary();
@@ -27,7 +29,7 @@ const Libraries = () => {
       <div className="flex justify-center items-center py-8">
         <div className="w-full">
           <div className="sm:flex justify-between items-center">
-            <div className="font-bold">Libraries</div>
+            <div className="font-bold text-xl">Libraries</div>
           </div>
           <div className="w-full">
             <img
@@ -45,12 +47,19 @@ const Libraries = () => {
                 >
                   {name}
                 </button>
-                <button onClick={() => removeLibrary(id)}>x</button>
+                <Button
+                  colorScheme="red"
+                  size="xs"
+                  onClick={() => removeLibrary(id)}
+                >
+                  x
+                </Button>
               </div>
             );
           })}
           <div className="w-full flex">
-            <input
+            <Input
+              size="lg"
               placeholder="Please Add a Library"
               className="w-full p-2 border border-gray-300 hover:border-gray-400"
               type="text"
@@ -59,19 +68,15 @@ const Libraries = () => {
                 setName(e.target.value);
               }}
             />
-            <button
+            <Button
+              colorScheme="blue"
+              size="lg"
               type="button"
               className="ml-auto p-2 text-white bg-blue-600 hover:bg-blue-700"
               onClick={() => handleCreateLibrary()}
             >
               Add
-            </button>
-          </div>
-          <div className="w-full pt-2">
-            <img
-              src="https://www.frontlist.in/wp-content/uploads/2021/06/GettyImages-577674005.jpg"
-              className="flex justify-center w-full h-44"
-            />
+            </Button>
           </div>
         </div>
       </div>
