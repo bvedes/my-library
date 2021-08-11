@@ -8,6 +8,8 @@ export const useLibrary = () => {
     query: { id },
   } = useRouter();
 
+  console.log("initialState:", initialState);
+
   useEffect(() => {
     setLibraries(
       JSON.parse(window.localStorage.getItem("libraries")) || initialState
@@ -18,7 +20,7 @@ export const useLibrary = () => {
     setLibraries(libraries);
     window.localStorage.setItem("libraries", JSON.stringify(libraries));
   };
-
+  console.log("libraries: ", libraries);
   const createLibrary = (library) => {
     handleSetLibraries([...libraries, library]);
     window.localStorage.setItem(

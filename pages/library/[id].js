@@ -2,9 +2,8 @@ import { useState } from "react";
 import { useLibrary } from "../../libs/use-libraries";
 import { useRouter } from "next/router";
 import EditModal from "../../Components/EditModal/EditModal";
-import { GoTrashcan } from "react-icons/go";
+import { GoTrashcan, GoChevronLeft, GoPlus } from "react-icons/go";
 import Layout from "../../Components/Layout/Layout";
-import { Button } from "@chakra-ui/react";
 
 const Sections = () => {
   const { libraries, addBookToLibrary, removeBookFromLibrary } = useLibrary();
@@ -23,27 +22,23 @@ const Sections = () => {
   return (
     <Layout>
       <div>
-        <div className="flex items-center justify-center gap-2 p-2">
-          <div>Library</div>
-          <Button
-            colorScheme="blue"
-            size="lg"
+        <div className="flex items-center justify-center gap-2 mt-2">
+          <div>Library-A</div>
+          <button
             className="bg-blue-500 text-white p-2 ml-auto"
             onClick={() => {
               toggleEditingModal(true);
             }}
           >
-            Add Book
-          </Button>
+            <GoPlus />
+          </button>
 
-          <Button
-            colorScheme="blue"
-            size="lg"
-            className="bg-blue-500 text-white p-2"
+          <button
+            className="bg-blue-500 text-white p-2 ml-2"
             onClick={() => router.push("/")}
           >
-            Back
-          </Button>
+            <GoChevronLeft />
+          </button>
         </div>
         <div className="flex flex-col gap-10">
           {library?.sections.map((section, idx) => {

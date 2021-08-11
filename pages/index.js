@@ -3,8 +3,6 @@ import { useRouter } from "next/router";
 import { useLibrary } from "../libs/use-libraries";
 import { v4 as uuidv4 } from "uuid";
 import Layout from "../Components/Layout/Layout";
-import { Button } from "@chakra-ui/react";
-import { Input } from "@chakra-ui/react";
 
 const Libraries = () => {
   const { libraries, createLibrary, removeLibrary } = useLibrary();
@@ -47,20 +45,18 @@ const Libraries = () => {
                 >
                   {name}
                 </button>
-                <Button
-                  colorScheme="red"
-                  size="xs"
+                <button
+                  className="bg-red-500 w-7 ring-offset-0 text-white justify-center items-center"
                   onClick={() => removeLibrary(id)}
                 >
                   x
-                </Button>
+                </button>
               </div>
             );
           })}
           <div className="w-full flex">
-            <Input
-              size="lg"
-              placeholder="Please Add a Library"
+            <input
+              placeholder="Create a Library"
               className="w-full p-2 border border-gray-300 hover:border-gray-400"
               type="text"
               value={name}
@@ -68,15 +64,13 @@ const Libraries = () => {
                 setName(e.target.value);
               }}
             />
-            <Button
-              colorScheme="blue"
-              size="lg"
+            <button
               type="button"
               className="ml-auto p-2 text-white bg-blue-600 hover:bg-blue-700"
               onClick={() => handleCreateLibrary()}
             >
               Add
-            </Button>
+            </button>
           </div>
         </div>
       </div>

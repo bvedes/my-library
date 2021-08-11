@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Button } from "@chakra-ui/react";
 
 const EditModal = ({ sections, addBookToLibrary, handleCancel }) => {
   const [title, setTitle] = useState("");
@@ -52,9 +51,7 @@ const EditModal = ({ sections, addBookToLibrary, handleCancel }) => {
         </div>
 
         <div className="h-16 p-8 border-t border-gray-200 flex justify-end items-center gap-2">
-          <Button
-            colorScheme="blue"
-            size="lg"
+          <button
             className="bg-blue-600 hover:bg-blue-800 text-white px-2 py-1 rounded-sm shadow-sm ml-2"
             onClick={() => {
               addBookToLibrary({
@@ -69,15 +66,13 @@ const EditModal = ({ sections, addBookToLibrary, handleCancel }) => {
             }}
           >
             Save
-          </Button>
-          <Button
-            colorScheme="blue"
-            size="lg"
-            className="bg-blue-600 hover:bg-blue-800 text-white px-2 py-1 rounded-sm shadow-sm"
+          </button>
+          <button
+            className="bg-red-600 hover:bg-blue-800 text-white px-2 py-1 rounded-sm shadow-sm"
             onClick={() => handleCancel()}
           >
             Cancel
-          </Button>
+          </button>
         </div>
       </div>
     </div>
