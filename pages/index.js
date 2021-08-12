@@ -60,6 +60,11 @@ const Libraries = () => {
               className="w-full p-2 border border-gray-300 hover:border-gray-400"
               type="text"
               value={name}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleCreateLibrary();
+                }
+              }}
               onChange={(e) => {
                 setName(e.target.value);
               }}

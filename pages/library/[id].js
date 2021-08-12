@@ -23,9 +23,9 @@ const Sections = () => {
     <Layout>
       <div>
         <div className="flex items-center justify-center gap-2 mt-2">
-          <div>Library-A</div>
+          <div>Library-{id}</div>
           <button
-            className="bg-blue-500 text-white p-2 ml-auto"
+            className="bg-blue-600 text-white p-2 ml-auto"
             onClick={() => {
               toggleEditingModal(true);
             }}
@@ -34,7 +34,7 @@ const Sections = () => {
           </button>
 
           <button
-            className="bg-blue-500 text-white p-2 ml-2"
+            className="bg-blue-600 text-white p-2 ml-2"
             onClick={() => router.push("/")}
           >
             <GoChevronLeft />
