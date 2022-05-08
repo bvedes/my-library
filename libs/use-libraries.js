@@ -21,6 +21,7 @@ export const useLibrary = () => {
     window.localStorage.setItem("libraries", JSON.stringify(libraries));
   };
   console.log("libraries: ", libraries);
+
   const createLibrary = (library) => {
     handleSetLibraries([...libraries, library]);
     window.localStorage.setItem(

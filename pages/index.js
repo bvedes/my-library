@@ -31,7 +31,7 @@ const Libraries = () => {
           </div>
           <div className="w-full">
             <img
-              src="https://www.frontlist.in/wp-content/uploads/2021/06/GettyImages-577674005.jpg"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFT9P0nSIkwC7diPHXGCQ4VOTe7VEZ2peJBg&usqp=CAU"
               className="flex justify-center w-full"
             />
           </div>
